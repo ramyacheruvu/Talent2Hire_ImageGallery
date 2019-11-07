@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <input type="file" accept='image/*' (change)="HandleImageInput($event.target.files)" />
+    </div>
+    <div class="col-lg-4">
+      <button class="btn btn-primary" (click)="ClearLocalStorage()">Clear Store</button>
+    </div>
+    <div class="col-lg-4">
+      <button class="btn btn-primary" (click)="SanitizeImagesFromFileStorage()">Refresh Images</button>
+    </div>
+
+  </div>
+  <div class="flex-container ">
+    <div *ngFor="let imageUrl of ImageUrls; let i=index">
+      <img [src]="imageUrl" alt="sorry" class="flex-item" (click)="PreviewImage(i)" />
+    </div>
+  </div>
+  <div>
+    <button *ngIf="CanPreview" class="btn btn-primary" (click)="RemoveFromLocalStorage()">Delete Image</button>
+    <pinch-zoom *ngIf="CanPreview" >
+      <img [src]="Image" width="800px;" height="600px;" />
+    </pinch-zoom>
+  </div>
+  </div>
+
+
